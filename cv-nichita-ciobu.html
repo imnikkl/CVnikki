@@ -48,6 +48,26 @@
   }
   .toolbar button:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
 
+  .lang-switch{
+    display:flex;border:1px solid var(--ink);border-radius:2px;overflow:hidden;
+  }
+  .lang-btn{
+    font-family:"Hanken Grotesk",sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.04em;text-transform:uppercase;cursor:pointer;
+    border:none;background:transparent;color:var(--ink);
+    padding:10px 14px;transition:.18s ease;
+  }
+  .lang-btn.active{background:var(--ink);color:var(--paper)}
+  .lang-btn:not(.active):hover{background:var(--line-soft);color:var(--accent)}
+
+  .theme-btn{
+    font-family:"Hanken Grotesk",sans-serif;font-size:14px;cursor:pointer;
+    border:1px solid var(--ink);background:transparent;color:var(--ink);
+    width:40px;height:40px;border-radius:2px;transition:.18s ease;
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  .theme-btn:hover{background:var(--ink);color:var(--paper)}
+
   .sheet{
     position:relative;z-index:1;
     width:210mm;min-height:297mm;margin:34px auto;
@@ -188,7 +208,12 @@
 <body>
 
 <div class="toolbar">
-  <button onclick="window.print()">Salvează ca PDF</button>
+  <div class="lang-switch" role="group" aria-label="Limbă / Язык">
+    <button class="lang-btn active" data-lang="ro" aria-label="Română">RO</button>
+    <button class="lang-btn"        data-lang="ru" aria-label="Русский">RU</button>
+  </div>
+  <button class="theme-btn" aria-label="Comută temă" title="Comută temă">☾</button>
+  <button class="pdf-btn" onclick="window.print()">Salvează ca PDF</button>
 </div>
 
 <div class="sheet">
