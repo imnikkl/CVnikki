@@ -159,6 +159,30 @@
   .bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
   .bar i{display:block;height:100%;background:var(--accent)}
 
+  /* Polish interactiv */
+  html{scroll-behavior:smooth}
+
+  .tags span{transition:border-color .18s, transform .18s, color .18s, background-color .18s}
+  .tags span:hover{border-color:var(--accent);color:var(--ink);transform:translateY(-1px)}
+
+  .skills li::before{transition:transform .25s}
+  .skills li:hover::before{transform:rotate(135deg)}
+
+  .contacts a{transition:color .18s, border-color .18s}
+
+  .job{transition:padding-left .2s}
+  .job:hover{padding-left:4px}
+  .job::before{
+    content:"";position:absolute;left:-4px;top:4px;width:2px;height:calc(100% - 8px);
+    background:var(--accent);opacity:0;transition:opacity .2s;
+  }
+  .job:hover::before{opacity:1}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{transition:none !important;animation:none !important}
+    html{scroll-behavior:auto !important}
+  }
+
   .skills{list-style:none}
   .skills li{
     font-size:13px;color:var(--ink-soft);line-height:1.35;
@@ -211,7 +235,13 @@
   /* print */
   @media print{
     @page{size:A4;margin:0}
-    html,body{background:#fff}
+    /* Forțează light mode la print, chiar dacă utilizatorul e pe dark */
+    html.dark{
+      --paper:#f8f4ec; --paper-2:#f2ece0; --ink:#1d1a15; --ink-soft:#46403a;
+      --muted:#857c70; --accent:#b0492a; --accent-2:#c9714f;
+      --line:#ddd5c6; --line-soft:#e8e1d4;
+    }
+    html,body,html.dark body,html.dark{background:#fff}
     body::before{display:none}
     .toolbar{display:none}
     .sheet{margin:0;box-shadow:none;width:100%;min-height:100vh}
@@ -227,6 +257,8 @@
 </style>
 </head>
 <body>
+
+<noscript><style>.toolbar{display:none}</style></noscript>
 
 <div class="toolbar">
   <div class="lang-switch" role="group" aria-label="Limbă / Язык">
