@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Nichita Ciobu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f8f4ec;
+    --paper-2:#f2ece0;
+    --ink:#1d1a15;
+    --ink-soft:#46403a;
+    --muted:#857c70;
+    --accent:#b0492a;
+    --accent-2:#c9714f;
+    --line:#ddd5c6;
+    --line-soft:#e8e1d4;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{
+    background:#e7e0d2;
+    color:var(--ink);
+    font-family:"Hanken Grotesk",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"ss01","cv01";
+  }
+
+  /* faint grain only on screen */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    opacity:.04;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .toolbar{
+    position:fixed;top:18px;right:18px;z-index:50;display:flex;gap:10px;
+  }
+  .toolbar button{
+    font-family:"Hanken Grotesk",sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.04em;text-transform:uppercase;cursor:pointer;
+    border:1px solid var(--ink);background:var(--ink);color:var(--paper);
+    padding:10px 16px;border-radius:2px;transition:.18s ease;
+  }
+  .toolbar button:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
+
+  .sheet{
+    position:relative;z-index:1;
+    width:210mm;min-height:297mm;margin:34px auto;
+    background:var(--paper);
+    box-shadow:0 30px 80px -30px rgba(40,30,20,.45),0 2px 8px rgba(0,0,0,.06);
+    display:grid;grid-template-columns:34% 66%;
+    overflow:hidden;
+  }
+
+  /* ===== HEADER (spans both columns) ===== */
+  .masthead{
+    grid-column:1 / -1;
+    padding:18mm 16mm 9mm;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .masthead::before{
+    content:"";position:absolute;left:0;top:0;height:100%;width:7px;background:var(--accent);
+  }
+  .eyebrow{
+    font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:14px;
+  }
+  .name{
+    font-family:"Fraunces",serif;font-weight:600;font-size:54px;line-height:.96;
+    letter-spacing:-.01em;color:var(--ink);
+  }
+  .name .last{font-style:italic;font-weight:500;color:var(--accent)}
+  .role{
+    margin-top:14px;font-size:13px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-soft);font-weight:600;
+  }
+  .contacts{
+    margin-top:20px;display:flex;flex-wrap:wrap;gap:7px 26px;
+    font-size:12.5px;color:var(--ink-soft);
+  }
+  .contacts span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+  .contacts .dot{width:4px;height:4px;border-radius:50%;background:var(--accent);flex:none}
+  .contacts a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line)}
+  .contacts a:hover{color:var(--accent)}
+
+  /* ===== COLUMNS ===== */
+  .sidebar{
+    background:var(--paper-2);
+    border-right:1px solid var(--line);
+    padding:11mm 11mm 14mm;
+  }
+  .main{
+    padding:11mm 14mm 14mm 13mm;
+  }
+
+  .block{margin-bottom:26px}
+  .block:last-child{margin-bottom:0}
+
+  .h{
+    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin-bottom:13px;
+    display:flex;align-items:center;gap:9px;
+  }
+  .h::after{content:"";height:1px;flex:1;background:var(--line)}
+
+  /* sidebar bits */
+  .lang{margin-bottom:13px}
+  .lang:last-child{margin-bottom:0}
+  .lang .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+  .lang .nm{font-size:13.5px;font-weight:600;color:var(--ink)}
+  .lang .lv{font-size:10.5px;color:var(--muted);letter-spacing:.03em;text-transform:uppercase}
+  .bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--accent)}
+
+  .skills{list-style:none}
+  .skills li{
+    font-size:13px;color:var(--ink-soft);line-height:1.35;
+    padding-left:16px;position:relative;margin-bottom:9px;
+  }
+  .skills li::before{
+    content:"";position:absolute;left:0;top:7px;width:6px;height:6px;
+    background:var(--accent-2);transform:rotate(45deg);
+  }
+
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tags span{
+    font-size:11px;font-weight:500;color:var(--ink-soft);
+    border:1px solid var(--line);background:var(--paper);
+    padding:4px 9px;border-radius:2px;letter-spacing:.01em;
+  }
+
+  .edu .item{margin-bottom:14px}
+  .edu .item:last-child{margin-bottom:0}
+  .edu .deg{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.25}
+  .edu .org{font-size:12px;color:var(--ink-soft);margin-top:3px;line-height:1.35}
+  .edu .yr{font-size:10.5px;color:var(--muted);margin-top:4px;letter-spacing:.05em;text-transform:uppercase}
+
+  /* main column */
+  .profile{
+    font-family:"Fraunces",serif;font-size:15.5px;line-height:1.55;font-weight:400;
+    color:var(--ink-soft);
+  }
+  .profile b{color:var(--ink);font-weight:600}
+
+  .job{margin-bottom:20px;position:relative}
+  .job:last-child{margin-bottom:0}
+  .job .row{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .job .title{font-family:"Fraunces",serif;font-size:17px;font-weight:600;color:var(--ink);line-height:1.2}
+  .job .when{font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;flex:none}
+  .job .org{font-size:12.5px;color:var(--accent);font-weight:600;margin-top:3px;letter-spacing:.02em}
+  .job ul{list-style:none;margin-top:9px}
+  .job li{
+    font-size:12.8px;line-height:1.5;color:var(--ink-soft);
+    padding-left:16px;position:relative;margin-bottom:6px;
+  }
+  .job li::before{
+    content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;
+    background:var(--accent);
+  }
+  .job li b{color:var(--ink);font-weight:600}
+
+  .divider{height:1px;background:var(--line-soft);margin:22px 0}
+
+  /* print */
+  @media print{
+    @page{size:A4;margin:0}
+    html,body{background:#fff}
+    body::before{display:none}
+    .toolbar{display:none}
+    .sheet{margin:0;box-shadow:none;width:100%;min-height:100vh}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+  /* screen responsiveness */
+  @media(max-width:880px){
+    .sheet{width:96%;grid-template-columns:1fr}
+    .sidebar{border-right:none;border-bottom:1px solid var(--line)}
+    .name{font-size:42px}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">Salvează ca PDF</button>
+</div>
+
+<div class="sheet">
+
+  <!-- HEADER -->
+  <header class="masthead">
+    <div class="eyebrow">Candidatură · Asistent Coordonator</div>
+    <h1 class="name">Nichita <span class="last">Ciobu</span></h1>
+    <div class="role">Coordonare · Marketing Digital · SMM · Organizare</div>
+    <div class="contacts">
+      <span><i class="dot"></i>Horodca, Ialoveni · Moldova</span>
+      <span><i class="dot"></i><a href="https://nikki.software" target="_blank" rel="noopener">nikki.software</a></span>
+      <span><i class="dot"></i>+373 [telefon]</span>
+      <span><i class="dot"></i>[email]</span>
+      <span><i class="dot"></i>[link rețea socială]</span>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <section class="block">
+      <div class="h">Limbi</div>
+      <div class="lang">
+        <div class="top"><span class="nm">Română</span><span class="lv">Nativ</span></div>
+        <div class="bar"><i style="width:100%"></i></div>
+      </div>
+      <div class="lang">
+        <div class="top"><span class="nm">Rusă</span><span class="lv">Avansat · C1</span></div>
+        <div class="bar"><i style="width:92%"></i></div>
+      </div>
+      <div class="lang">
+        <div class="top"><span class="nm">Engleză</span><span class="lv">Mediu-avansat · B2</span></div>
+        <div class="bar"><i style="width:72%"></i></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="h">Competențe</div>
+      <ul class="skills">
+        <li>Organizare și gestionarea sarcinilor, control al termenelor</li>
+        <li>Multitasking și lucru autonom, de la distanță</li>
+        <li>Coordonarea executanților (designeri, targetologi, creatori de conținut)</li>
+        <li>Comunicare cu clienți, parteneri și furnizori</li>
+        <li>Copywriting pentru postări, afișe și oferte comerciale</li>
+        <li>Atenție la detalii și gândire sistemică</li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <div class="h">Instrumente</div>
+      <div class="tags">
+        <span>Tilda</span><span>Canva</span><span>Google Docs</span>
+        <span>Google Sheets</span><span>Meta Ads Manager</span><span>CRM</span>
+        <span>n8n</span><span>Instrumente AI</span><span>Photoshop</span>
+        <span>HTML / CSS</span>
+      </div>
+    </section>
+
+    <section class="block edu">
+      <div class="h">Educație</div>
+      <div class="item">
+        <div class="deg">Dezvoltarea aplicațiilor web</div>
+        <div class="org">CEITI — Centrul de Excelență în Informatică și Tehnologii Informaționale · grupa W-2513</div>
+        <div class="yr">în curs</div>
+      </div>
+      <div class="item">
+        <div class="deg">Certificări IT</div>
+        <div class="org">IT Step Academy — Photoshop · HTML / CSS / JavaScript · Animație video</div>
+      </div>
+    </section>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <section class="block">
+      <div class="h">Profil</div>
+      <p class="profile">Specialist tânăr, <b>organizat și autonom</b>, cu experiență practică în marketing digital, dezvoltare web și automatizări cu instrumente AI. Duc proiectele de la idee la rezultat: campanii publicitare pe Meta Ads, conținut și materiale vizuale, site-uri și comunicarea directă cu clienții. <b>Bilingv română–rusă</b>, obișnuit cu multitasking-ul și termenele strânse. Caut un rol într-un mediu de afaceri activ, unde pot susține organizarea evenimentelor, coordonarea echipei și procesele de zi cu zi.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="block">
+      <div class="h">Experiență</div>
+
+      <div class="job">
+        <div class="row">
+          <div>
+            <div class="title">Marketing Digital &amp; Dezvoltare Web</div>
+            <div class="org">Activitate freelance · Moldova</div>
+          </div>
+          <div class="when">în prezent</div>
+        </div>
+        <ul>
+          <li>Administrez <b>campanii de publicitate plătită pe Meta Ads</b> (Facebook / Instagram) pentru afaceri locale — configurare, optimizarea bugetului, raportare și soluționarea problemelor de facturare (autentificare 3DS, plăți recurente).</li>
+          <li>Comunic <b>direct cu clienții</b>: clarific cerințele, pregătesc propuneri și mențin relația pe tot parcursul proiectului.</li>
+          <li>Creez și administrez site-uri și landing pages (Laravel, PHP, TypeScript), inclusiv integrări precum autentificarea Google.</li>
+          <li>Pregătesc materiale vizuale, afișe și texte pentru postări (Canva, Photoshop).</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="row">
+          <div>
+            <div class="title">Administrator Web</div>
+            <div class="org">[Companie]</div>
+          </div>
+          <div class="when">[perioadă]</div>
+        </div>
+        <ul>
+          <li>Întreținerea și actualizarea conținutului site-ului, organizarea fluxurilor de lucru și respectarea termenelor.</li>
+          <li>Coordonarea sarcinilor curente și menținerea ordinii în procesele de lucru.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="block">
+      <div class="h">Proiecte &amp; Automatizări</div>
+      <div class="job">
+        <ul>
+          <li>Am construit o <b>platformă imobiliară</b> completă (Laravel): anunțuri, autentificare, structură optimizată SEO.</li>
+          <li>Am creat <b>fluxuri de automatizare în n8n</b> cu instrumente AI — scorarea lead-urilor, asistent de suport și recuperarea abonamentelor.</li>
+          <li>Portofoliu și proiecte personale disponibile la <b>nikki.software</b>.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+</body>
+</html>
