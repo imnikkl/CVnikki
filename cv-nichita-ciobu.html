@@ -20,6 +20,26 @@
     --line-soft:#e8e1d4;
   }
 
+  html.dark{
+    --paper:#15130f;
+    --paper-2:#1d1a14;
+    --ink:#f5efe2;
+    --ink-soft:#c9c0b0;
+    --muted:#8a8073;
+    --accent:#d97a59;
+    --accent-2:#e89a7c;
+    --line:#2e2820;
+    --line-soft:#241f18;
+  }
+  html.dark body{background:#0e0c08}
+  html.dark body::before{opacity:.06}
+
+  html, body, .sheet, .sidebar, .main, .masthead, .h, .tags span,
+  .contacts span, .contacts a, .skills li, .bar, .bar i, .divider,
+  .lang-btn, .theme-btn, .pdf-btn{
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+  }
+
   *{box-sizing:border-box;margin:0;padding:0}
 
   html,body{
