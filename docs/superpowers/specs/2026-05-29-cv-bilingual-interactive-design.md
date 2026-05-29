@@ -31,7 +31,17 @@ NU adăugăm: fotografie, metrici cu numere, showcase de proiecte cu screenshotu
 | `.contacts` item 5 | `[link rețea socială]` | Două itemi separați: `Telegram @ImNikki` (link `https://t.me/ImNikki`) și `GitHub imnikkl` (link `https://github.com/imnikkl`) |
 | Job 2 → companie | `[Companie]` | `Nicons · nicons.md` |
 | Job 2 → perioadă | `[perioadă]` | `~4 luni` |
-| Job 2 → bullets | 2 generice | 3 bullets: (1) creat și administrat `nicons.md`, (2) optimizare SEO + update constant, (3) anunțuri de vânzări + administrare generală |
+| Job 2 → bullets | 2 generice | 3 bullets specifice (text RO mai jos) |
+
+**Bullets job „Administrator Web — Nicons" (RO):**
+1. Am creat și administrat pagina web **Nicons.md**.
+2. Am lucrat asupra **optimizării SEO** și actualizam site-ul constant.
+3. Adăugam **anunțuri de vânzări** și mă ocupam de administrarea generală a platformei.
+
+**Bullets în RU:**
+1. Создал и администрировал веб-страницу **Nicons.md**.
+2. Работал над **SEO-оптимизацией** и регулярно обновлял сайт.
+3. Добавлял **объявления о продажах** и занимался общим администрированием платформы.
 
 ### 3.2 Traducere RU
 
@@ -115,6 +125,8 @@ Prioritate: `localStorage` > `navigator.language` > default RO.
 
 Limba activă are clasa `.active` (stilizare: fundal `--ink`, text `--paper`).
 
+> Notă: `data-lang` (pe butoanele toolbar) și `data-ro` / `data-ru` (pe textele traduse) sunt atribute distincte cu scopuri diferite. `data-lang` indică **ce limbă activează** butonul; `data-ro/ru` conțin **conținutul tradus**.
+
 ## 5. Dark/light mode
 
 ### 5.1 CSS variables — paleta dark
@@ -160,10 +172,16 @@ Prioritate: `localStorage` > `prefers-color-scheme` > default light.
 
 ### 5.3 Tranziții smooth la theme switch
 
+Aplicate doar pe containerele care își schimbă culoarea/fundalul la theme switch — nu pe `*` (ar suprascrie tranzițiile existente, ex. `.toolbar button`).
+
 ```css
-* { transition: background-color .25s ease, color .25s ease, border-color .25s ease; }
+html, body, .sheet, .sidebar, .main, .masthead, .h, .tags span,
+.contacts span, .contacts a, .skills li, .bar, .bar i, .divider {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
   html { scroll-behavior: auto !important; }
 }
 ```
