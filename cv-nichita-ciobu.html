@@ -417,5 +417,71 @@
   </main>
 
 </div>
+
+<script>
+(function(){
+  'use strict';
+
+  function setLang(lang){
+    if(lang !== 'ro' && lang !== 'ru') lang = 'ro';
+    document.documentElement.lang = lang;
+    document.title = lang === 'ru' ? 'CV — Никита Чобу' : 'CV — Nichita Ciobu';
+    document.querySelectorAll('[data-ro]').forEach(function(el){
+      var val = el.dataset[lang];
+      if(val == null) val = el.dataset.ro;
+      el.innerHTML = val;
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(b){
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    try { localStorage.setItem('cv-lang', lang); } catch(_){}
+  }
+
+  function initialLang(){
+    try {
+      var stored = localStorage.getItem('cv-lang');
+      if(stored === 'ro' || stored === 'ru') return stored;
+    } catch(_){}
+    var nav = (navigator.language || '').toLowerCase();
+    if(nav.indexOf('ru') === 0) return 'ru';
+    return 'ro';
+  }
+
+  function setTheme(theme){
+    if(theme !== 'dark' && theme !== 'light') theme = 'light';
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    var btn = document.querySelector('.theme-btn');
+    if(btn){
+      btn.textContent = theme === 'dark' ? '☀' : '☾';
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Comută la temă deschisă' : 'Comută la temă întunecată');
+    }
+    try { localStorage.setItem('cv-theme', theme); } catch(_){}
+  }
+
+  function initialTheme(){
+    try {
+      var stored = localStorage.getItem('cv-theme');
+      if(stored === 'dark' || stored === 'light') return stored;
+    } catch(_){}
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+    return 'light';
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.addEventListener('click', function(){ setLang(b.dataset.lang); });
+  });
+
+  var themeBtn = document.querySelector('.theme-btn');
+  if(themeBtn){
+    themeBtn.addEventListener('click', function(){
+      var current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  setLang(initialLang());
+  setTheme(initialTheme());
+})();
+</script>
 </body>
 </html>
