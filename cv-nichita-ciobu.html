@@ -37,7 +37,8 @@
 
   html, body, .sheet, .sidebar, .main, .masthead, .h, .tags span,
   .contacts span, .contacts a, .skills li, .bar, .bar i, .divider,
-  .lang-btn, .theme-btn, .pdf-btn{
+  .lang-btn, .theme-btn, .pdf-btn, .personal .k, .personal .v,
+  .masthead-photo{
     transition: background-color .25s ease, color .25s ease, border-color .25s ease;
   }
 
@@ -104,9 +105,21 @@
     padding:18mm 16mm 9mm;
     border-bottom:1px solid var(--line);
     position:relative;
+    display:flex;
+    align-items:center;
+    gap:14mm;
   }
   .masthead::before{
     content:"";position:absolute;left:0;top:0;height:100%;width:7px;background:var(--accent);
+  }
+  .masthead-info{flex:1;min-width:0}
+  .masthead-photo{
+    flex:none;
+    width:38mm;height:48mm;
+    object-fit:cover;object-position:center top;
+    border-radius:4px;
+    border:1px solid var(--line);
+    box-shadow:0 6px 20px -10px rgba(40,30,20,.4);
   }
   .eyebrow{
     font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;
@@ -253,6 +266,25 @@
     .sheet{width:96%;grid-template-columns:1fr}
     .sidebar{border-right:none;border-bottom:1px solid var(--line)}
     .name{font-size:42px}
+    .masthead{flex-direction:column-reverse;align-items:flex-start;gap:8mm}
+    .masthead-photo{width:32mm;height:40mm}
+  }
+
+  /* Personal info section */
+  .personal{list-style:none}
+  .personal li{
+    display:flex;gap:8px;margin-bottom:7px;
+    font-size:12.5px;line-height:1.35;
+  }
+  .personal li:last-child{margin-bottom:0}
+  .personal .k{
+    flex:none;width:72px;
+    font-size:10px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.06em;color:var(--muted);
+    padding-top:2px;
+  }
+  .personal .v{
+    flex:1;color:var(--ink-soft);
   }
 </style>
 </head>
@@ -276,28 +308,57 @@
 
   <!-- HEADER -->
   <header class="masthead">
-    <div class="eyebrow"
-         data-ro="Candidatură · Asistent Coordonator"
-         data-ru="Кандидатура · Помощник координатора">Candidatură · Asistent Coordonator</div>
-    <h1 class="name"
-        data-ro='Nichita <span class="last">Ciobu</span>'
-        data-ru='Никита <span class="last">Чобу</span>'>Nichita <span class="last">Ciobu</span></h1>
-    <div class="role"
-         data-ro="Coordonare · Marketing Digital · SMM · Organizare"
-         data-ru="Координация · Цифровой маркетинг · SMM · Организация">Coordonare · Marketing Digital · SMM · Organizare</div>
-    <div class="contacts">
-      <span data-ro='<i class="dot"></i>Horodca, Ialoveni · Moldova'
-            data-ru='<i class="dot"></i>Хородка, Яловень · Молдова'><i class="dot"></i>Horodca, Ialoveni · Moldova</span>
-      <span><i class="dot"></i><a href="https://nikki.software" target="_blank" rel="noopener">nikki.software</a></span>
-      <span><i class="dot"></i><a href="tel:+37369440135">+373 69 440 135</a></span>
-      <span><i class="dot"></i><a href="mailto:nichitaciobu0@gmail.com">nichitaciobu0@gmail.com</a></span>
-      <span><i class="dot"></i><a href="https://t.me/ImNikki" target="_blank" rel="noopener">Telegram @ImNikki</a></span>
-      <span><i class="dot"></i><a href="https://github.com/imnikkl" target="_blank" rel="noopener">GitHub imnikkl</a></span>
+    <div class="masthead-info">
+      <div class="eyebrow"
+           data-ro="Candidatură · Asistent Coordonator"
+           data-ru="Кандидатура · Помощник координатора">Candidatură · Asistent Coordonator</div>
+      <h1 class="name"
+          data-ro='Nichita <span class="last">Ciobu</span>'
+          data-ru='Никита <span class="last">Чобу</span>'>Nichita <span class="last">Ciobu</span></h1>
+      <div class="role"
+           data-ro="Coordonare · Marketing Digital · SMM · Organizare"
+           data-ru="Координация · Цифровой маркетинг · SMM · Организация">Coordonare · Marketing Digital · SMM · Organizare</div>
+      <div class="contacts">
+        <span data-ro='<i class="dot"></i>Horodca, Ialoveni · Moldova'
+              data-ru='<i class="dot"></i>Хородка, Яловень · Молдова'><i class="dot"></i>Horodca, Ialoveni · Moldova</span>
+        <span><i class="dot"></i><a href="https://nikki.software" target="_blank" rel="noopener">nikki.software</a></span>
+        <span><i class="dot"></i><a href="tel:+37369440135">+373 69 440 135</a></span>
+        <span><i class="dot"></i><a href="mailto:nichitaciobu0@gmail.com">nichitaciobu0@gmail.com</a></span>
+        <span><i class="dot"></i><a href="https://t.me/ImNikki" target="_blank" rel="noopener">Telegram @ImNikki</a></span>
+        <span><i class="dot"></i><a href="https://github.com/imnikkl" target="_blank" rel="noopener">GitHub imnikkl</a></span>
+      </div>
     </div>
+    <img class="masthead-photo" src="assets/cvphoto.webp" alt="Nichita Ciobu" loading="eager" width="144" height="181">
   </header>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
+
+    <section class="block">
+      <div class="h" data-ro="Despre mine" data-ru="Обо мне">Despre mine</div>
+      <ul class="personal">
+        <li>
+          <span class="k" data-ro="Vârsta" data-ru="Возраст">Vârsta</span>
+          <span class="v" data-ro="16 ani · 15.06.2009" data-ru="16 лет · 15.06.2009">16 ani · 15.06.2009</span>
+        </li>
+        <li>
+          <span class="k" data-ro="Înălțime" data-ru="Рост">Înălțime</span>
+          <span class="v" data-ro="1.78 m" data-ru="1.78 м">1.78 m</span>
+        </li>
+        <li>
+          <span class="k" data-ro="Greutate" data-ru="Вес">Greutate</span>
+          <span class="v" data-ro="60 kg" data-ru="60 кг">60 kg</span>
+        </li>
+        <li>
+          <span class="k" data-ro="Ochi" data-ru="Глаза">Ochi</span>
+          <span class="v" data-ro="verzi" data-ru="зелёные">verzi</span>
+        </li>
+        <li>
+          <span class="k" data-ro="Sociabil" data-ru="Общительный">Sociabil</span>
+          <span class="v" data-ro="găsesc limba comună ușor" data-ru="легко нахожу общий язык">găsesc limba comună ușor</span>
+        </li>
+      </ul>
+    </section>
 
     <section class="block">
       <div class="h" data-ro="Limbi" data-ru="Языки">Limbi</div>
